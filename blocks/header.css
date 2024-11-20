@@ -1,0 +1,14 @@
+.header{
+    margin-top: 45px;
+    padding: 0;
+}
+
+.header__div{
+    border-bottom: 1px white solid;
+    width: 880px;
+    height: 74px;
+}
+
+.header__photo{
+    margin-bottom: auto;
+}
