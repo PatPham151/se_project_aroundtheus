@@ -1,0 +1,8 @@
+.content{
+    margin: 0;
+    padding: 0;
+}
+
+.content__cards{
+    list-style-type: none;
+}

@@ -1,14 +1,30 @@
 .header{
     margin-top: 45px;
     padding: 0;
+    border-bottom: 1px #545454 solid;
+    max-width: 880px;
+    max-height: 74px;
 }
 
-.header__div{
-    border-bottom: 1px white solid;
-    width: 880px;
-    height: 74px;
+.header__logo{
+    width: 173px;
+    height: 33px;
+} 
+
+.header__content{
+    max-width: 880px;
 }
 
-.header__photo{
-    margin-bottom: auto;
+@media (max-width: 775px){
+    .header{
+        border-bottom: 1px #545454 solid;
+        width: auto;
+    }
+}
+
+@media (min-width: 775px) and (max-width: 1280px){
+    .header{
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

@@ -1,20 +1,122 @@
-.profile{}
+.profile{
+    display: flex;
+    margin-top: 20px;
+    max-width: 880px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile__info{
+    display: grid;
+    grid-template-areas: 
+    "title button"
+    "description description";
+    margin-left: 20px;
+}
 
 
-.profile__info{}
+.profile__title{
+    margin: 0;
+    font-size: 42px;
+    font-weight: 500;
+    font: 'inter', Arial, helvetica;
+    grid-area: title;
+    justify-self: center;
+    align-self: center;
+}
 
 
-.profile__title{}
+.profile__description{
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    grid-area: description;
+    margin: 0;
+}
 
 
-.profile__description{}
+.profile__edit-button{
+    background: transparent url(../vectors/Edit\ Button.png) no-repeat center;
+    border: 1px #ffffff;
+    margin-top: auto;
+    margin-bottom: auto;
+    grid-column: 3;
+    width: 24px;
+    height: 24px;
+    grid-area: button;
+}
 
-
-.profile__edit-button{}
-
+.profile__edit-button:hover{
+    background: transparent url(../vectors/Edit\ Button\ Hover.png) no-repeat center;
+}
 
 .profile__add-button{
-    border: 2px white solid;
+    grid-column: 4;
     width: 150px;
     height: 50px;
+    align-self: center;
+    justify-self: center;
+    margin-left: auto;
+    border: 2px #ffffff solid;
+    background: transparent url(../vectors/add\ button.png) no-repeat center;
+}
+
+.profile__add-button:hover{
+    background: transparent url(../vectors/Add\ Button\ Hover.png) no-repeat center;
+}
+
+
+@media (max-width: 425px){
+    .profile{
+       display: flex;
+       flex-direction: column;
+       margin-left: auto;
+       margin-right: auto;
+       margin-top: 40px;
+    }
+
+    /* note to self go back and correct this */
+
+    .profile__avatar{
+        width: 120px;
+        height: 120px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .profile__info{
+        width: 282px;
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .profile__title{
+        font-weight: 500px;
+        font-size: 22px;
+        width: 196px;
+        height: 22px;
+    }
+
+    .profile__edit-button{
+        height: 18px;
+        width: 18px;
+    }
+
+    .profile__add-button{
+        width: 282px;
+    }
+
+    .profile__add-button{
+        grid-column: 4;
+        width: 282px;
+        align-self: center;
+        justify-self: center;
+        margin-left: auto;
+        border: 2px #ffffff solid;
+        background: transparent url(../vectors/add\ button.png) no-repeat center;
+    }
+
+    
 }

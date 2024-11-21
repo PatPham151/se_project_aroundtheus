@@ -1,0 +1,25 @@
+.card{
+    margin: 0;
+    padding: 0;
+    max-width: 282px;
+    max-height:  361px;
+}
+
+.card__image{
+    width: 282px;
+    height: 282px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card__title{
+    margin: 0;
+    padding: 0;
+}
+
+.card__description{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #ffffff;
+    color: black;
+}

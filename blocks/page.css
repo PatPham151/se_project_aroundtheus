@@ -1,7 +1,26 @@
 .page{
     background-color: black;
     color: #ffffff;
-
     margin-left: 200px;
     margin-right: 200px;
 }
+
+.page__content{
+} 
+
+
+@media (max-width: 775px){
+    .page{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media (min-width: 775px) and (max-width: 1280px){
+    .page{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
