@@ -64,6 +64,7 @@
 
 .profile__add-button:hover{
     background: transparent url(../vectors/Add\ Button\ Hover.png) no-repeat center;
+    border: 2px #545454 solid;
 }
 
 
@@ -91,15 +92,22 @@
         margin-left: auto;
         margin-right: auto;
     }
+    
+    .profile__title {
+        font-size: 25px;           
+        font-weight: 500;           
+        text-align: center;   
+        width: 196px;             
+        height: 22px;                
+        margin: 0 auto;              
+    }
 
-    .profile__title{
-        font-weight: 500px;
-        font-size: 22px;
-        width: 196px;
-        height: 22px;
+    .profile__description{
+        text-align: center;
     }
 
     .profile__edit-button{
+        margin-left: auto;
         height: 18px;
         width: 18px;
     }
@@ -111,7 +119,8 @@
     .profile__add-button{
         grid-column: 4;
         width: 282px;
-        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
         justify-self: center;
         margin-left: auto;
         border: 2px #ffffff solid;
