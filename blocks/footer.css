@@ -1,4 +1,25 @@
+.footer{
+    padding: 0;
+    margin: 0;
+}
+
 .footer__copyright{
     color: #545454;
-    margin-left: 200px;
+    padding: 0;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+
+    display: flex;
+    margin-top: 20px;
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 776px) and (max-width: 1280px) {
+    .footer__copyright {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
