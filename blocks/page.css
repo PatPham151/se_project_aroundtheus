@@ -5,15 +5,10 @@
     
 }
 
-@media (max-width: 775px){
-    .page{
-        margin: 0;
-        padding: 0;
-    }
-}
+/* combined two different media queries with similar properties */
 
-@media (min-width: 775px) and (max-width: 1280px){
-    .page{
+@media (max-width: 1280px) {
+    .page {
         margin: 0;
         padding: 0;
     }

@@ -1,39 +1,32 @@
-/* Gallery layout */
+
 .gallery {
-    display: grid; /* Use grid layout instead of flex for the gallery */
+    display: grid; 
     margin-top: 20px;
     max-width: 880px;
     margin-left: auto;
     margin-right: auto;
+
 }
+
+/* 
+Used shorthand for grid-template-columns 
+Reseted Margin
+*/
 
 .gallery__cards {
     list-style-type: none;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 3 columns layout */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
     grid-gap: 20px 18px;
-    margin-left: auto;
-    margin-right: auto;
+    margin:0 auto 0 auto;
     padding: 0;
 }
 
-/* Mobile view - 425px or less */
-@media (max-width: 425px) {
-    .profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Center the profile section */
-        margin-top: 40px;
-    }
-
-    .gallery {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Center the gallery in column layout */
-        margin-top: 40px;
-    }
-}
-
+/* 
+Mobile view - 425px or less 
+Moved profile to its own stylesheet 
+Put the max width in largest to smallest order
+*/
 /* Tablet view - 900px or less */
 @media (max-width: 900px) {
     .gallery__cards {
@@ -45,5 +38,14 @@
 @media (max-width: 620px){
     .gallery__cards {
         grid-template-columns: 1fr; /* 1 column layout */
+    }
+}
+
+@media (max-width: 425px) {
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the gallery in column layout */
+        margin-top: 40px;
     }
 }
