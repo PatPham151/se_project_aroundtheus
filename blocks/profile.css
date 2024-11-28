@@ -133,10 +133,6 @@ Removed duplicate code and used svg for plus symbol
     }
 
     .profile__add-button{
-        
-    }
-
-    .profile__add-button{
         grid-column: 4;
         width: 282px;
         justify-self: center;
