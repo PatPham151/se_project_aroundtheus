@@ -48,7 +48,7 @@ Added line-height from Figma
 Changed profile button to svg along with all other icons logos and buttons
 */
 .profile__edit-button{
-    background: transparent url(../card-images/Edit-btn.svg) no-repeat center;
+    background: transparent url(../images/Edit-btn.svg) no-repeat center;
     border: 1px #ffffff;
     margin-top: auto;
     margin-bottom: auto;
@@ -62,9 +62,10 @@ Changed profile button to svg along with all other icons logos and buttons
 Changed the hover to a change of opacity and not a different button all together and removed duplicate code
 */
 .profile__edit-button:hover{
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
+/* Added border radius */
 .profile__add-button{
     grid-column: 4;
     width: 150px;
@@ -73,15 +74,15 @@ Changed the hover to a change of opacity and not a different button all together
     justify-self: center;
     margin-left: auto;
     border: 2px #ffffff solid;
-    background: transparent url(../card-images/add.svg) no-repeat center;
+    background: transparent url(../images/add.svg) no-repeat center;
+    border-radius: 2px;
 }
 
 /* 
 Removed duplicate code and used svg for plus symbol
 */
 .profile__add-button:hover{
-    opacity: 0.5;
-    border: 2px #ffffff solid;
+    opacity: 0.6;
 }
 
 
@@ -104,16 +105,16 @@ Removed duplicate code and used svg for plus symbol
 
     .profile__info{
         width: 282px;
-        height: 50px;
         margin-left: auto;
         margin-right: auto;
     }
     
+
+    /* Removed fixed text height */
     .profile__title {
         font-size: 22px;                     
         line-height: 26.63px;
-        width: 196px;             
-        height: 22px;                
+        width: 196px;                            
             
     }
 
@@ -129,15 +130,11 @@ Removed duplicate code and used svg for plus symbol
         margin-right: auto;
         height: 18px;
         width: 18px;
-        border: 1px #ffffff solid;
     }
 
     .profile__add-button{
-        grid-column: 4;
         width: 282px;
         justify-self: center;
-        margin-left: auto;
-        border: 2px #ffffff solid;
         margin: 20px auto 0 auto;
     }
 

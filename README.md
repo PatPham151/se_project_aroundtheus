@@ -37,5 +37,6 @@ Link for video:
 https://drive.google.com/file/d/1SkmgUYseQGDeT--dM3Ey0fgsD4n3xdDo/view?usp=drive_link
 Sorry the video isnt great, was nervous about making it. 
 
+I have made the video accessible via link, thank you! 
 
 Thank you! 

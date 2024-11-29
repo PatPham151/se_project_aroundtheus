@@ -41,17 +41,19 @@
     line-height: 29.05px;
 }
 
+/* Added cursor pointer */
+
 .card__like-button {
     order: 2;
     width: 21px;
     height: 18px;
-    background: transparent url(../card-images/like.svg) no-repeat center;
+    background: transparent url(../images/like.svg) no-repeat center;
     border: none;
+    cursor: pointer;
 }
 
 /* Removed duplicated values and no longer loads a different icon */
 
 .card__like-button:hover{
-    background: transparent url(../card-images/like.svg) no-repeat center;
     opacity: 0.5;
 }

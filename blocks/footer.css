@@ -24,7 +24,6 @@ Removed max-width as the max width should be limited with its container
     display: flex;
     margin: 20px auto 0 0; /* Ensure there's no bottom margin */
     justify-content: center; /* Optional: Adjust this for centering the text */
-    margin-bottom: 0; /* Reset default bottom margin */
     
 }
 
