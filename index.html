@@ -1,101 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Around the US"/>
-    <meta name="author" content="Pat Pham"/>
-    <meta name="keywords" content="Photography, United States, Landscapes"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Around the US" />
+    <meta name="author" content="Pat Pham" />
+    <meta name="keywords" content="Photography, United States, Landscapes" />
     <title>Around the US</title>
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" href="./pages/index.css"/>
-</head>
-   
-<!-- Removed extra head and doctype. Sorry I was having trouble with Git and I think it merged two sets of code together -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
 
-    <body class="page">
+  <!-- 
+Removed extra head and doctype. Sorry I was having trouble with Git and I think it merged two sets of code together 
+I have put the HTML through the w3 validator and there was no errors or warnings 
+-->
+
+  <body class="page">
     <header class="header">
-        <div class="header__content">
-            <img src="./images/logo.svg"
-            alt="Around the US logo"
-            class="header__logo"/>
-        </div>
-     </header>
+      <div class="header__content">
+        <img
+          src="./images/logo.svg"
+          alt="Around the US logo"
+          class="header__logo"
+        />
+      </div>
+    </header>
 
     <main class="content">
-        <section class="profile">
-            <img src="./images/avatar.svg"
-            alt="avatar"
-            class="profile__avatar">
+      <section class="profile">
+        <img src="./images/avatar.svg" alt="avatar" class="profile__avatar" />
 
         <!-- Corrected button type -->
 
-            <div class="profile__info">
-                <h1 class="profile__title">Jacques Cousteau</h1>
-                <button class="profile__edit-button" type="button"></button>
-                <p class="profile__description">explorer</p>
-            </div>
+        <div class="profile__info">
+          <h1 class="profile__title">Jacques Cousteau</h1>
+          <button class="profile__edit-button" type="button"></button>
+          <p class="profile__description">explorer</p>
+        </div>
 
-            <button class="profile__add-button" type="button"></button>
-        </section>
+        <button class="profile__add-button" type="button"></button>
+      </section>
 
-        <section class="gallery">
+      <section class="gallery">
         <ul class="gallery__cards">
-            <li class="card">
-                <img src="./images/yosemite.jpg" alt="yosemite" class="card__image">
-                <div class="card__description">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
+          <li class="card">
+            <img
+              src="./images/yosemite.jpg"
+              alt="yosemite"
+              class="card__image"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Yosemite Valley</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
 
-            <li class="card">
-                <img src="./images/lake-louise.jpg" alt="lake louise" class="card__image">
-                <div class="card__description">
-                <h2 class="card__title">Lake Louise</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
+          <li class="card">
+            <img
+              src="./images/lake-louise.jpg"
+              alt="lake louise"
+              class="card__image"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Lake Louise</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
 
-            <li class="card">
-                <img src="./images/bald-mountains.jpg" alt="bald mountains" class="card__image">
-                <div class="card__description">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
+          <li class="card">
+            <img
+              src="./images/bald-mountains.jpg"
+              alt="bald mountains"
+              class="card__image"
+            />
+            <div class="card__description">
+              <h2 class="card__title">Bald Mountains</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
 
-            <li class="card">
-                <img src="./images/latemar.jpg" alt="latemar" class="card__image">
-                <div class="card__description">
-                <h2 class="card__title">Latemar</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
+          <li class="card">
+            <img src="./images/latemar.jpg" alt="latemar" class="card__image" />
+            <div class="card__description">
+              <h2 class="card__title">Latemar</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
 
-            <li class="card">
-                <img src="./images/vanoise.jpg" alt="vanoise" class="card__image">
-                <div class="card__description">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
+          <li class="card">
+            <img src="./images/vanoise.jpg" alt="vanoise" class="card__image" />
+            <div class="card__description">
+              <h2 class="card__title">Vanoise National Park</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
 
-            <li class="card">
-                <img src="./images/lago.jpg" alt="lago" class="card__image">
-                <div class="card__description">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button class="card__like-button" type="button"></button>
-                </div>
-            </li>
-
+          <li class="card">
+            <img src="./images/lago.jpg" alt="lago" class="card__image" />
+            <div class="card__description">
+              <h2 class="card__title">Lago di Braies</h2>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
         </ul>
-        </section>
-     </main>
+      </section>
+    </main>
 
     <footer class="footer">
-        <p class="footer__copyright">2024 Around the U.S</p>
+      <p class="footer__copyright">2024 Around the U.S</p>
     </footer>
-</body>
+  </body>
 </html>

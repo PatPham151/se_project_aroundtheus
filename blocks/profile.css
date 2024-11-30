@@ -1,142 +1,145 @@
-.profile{
-    display: flex;
-    margin-top: 20px;
-    max-width: 880px;
+.profile {
+  display: flex;
+  margin-top: 20px;
+  max-width: 880px;
+  padding-left: 20px;
 
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.profile__info{
-    display: grid;
-    grid-template-areas: 
+.profile__info {
+  display: grid;
+  grid-template-areas:
     "title button"
     "description description";
-    margin-left: 20px;
+  margin-left: 30px;
 }
 
-.profile__avatar{
-    border-radius: 50%;
+.profile__avatar {
+  border-radius: 50%;
 }
 
 /* 
 Added line-height from Figma
 */
 
-.profile__title{
-    margin: 0;
-    font-size: 42px;
-    line-height: 48px;
-    font-weight: 500;
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-    grid-area: title;
-    justify-self: center;
-    align-self: center;
+.profile__title {
+  margin: 0;
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 500;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  grid-area: title;
+  justify-self: center;
+  align-self: center;
 }
 
-
-.profile__description{
-    font-size: 18px;
-    line-height: 22px;
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    grid-area: description;
-    margin: 0;
+.profile__description {
+  font-size: 18px;
+  line-height: 22px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  grid-area: description;
+  margin: 0;
 }
 
 /* 
 Changed profile button to svg along with all other icons logos and buttons
 */
-.profile__edit-button{
-    background: transparent url(../images/Edit-btn.svg) no-repeat center;
-    border: 1px #ffffff;
-    margin-top: auto;
-    margin-bottom: auto;
-    grid-column: 3;
-    width: 24px;
-    height: 24px;
-    grid-area: button;
+.profile__edit-button {
+  background: transparent url(../images/Edit-btn.svg) no-repeat center;
+  border: 1px #ffffff;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 20px;
+  margin-right: 10px;
+  grid-column: 3;
+  width: 24px;
+  height: 24px;
+  grid-area: button;  
 }
 
 /*
 Changed the hover to a change of opacity and not a different button all together and removed duplicate code
 */
-.profile__edit-button:hover{
-    opacity: 0.6;
+.profile__edit-button:hover {
+  opacity: 0.6;
 }
 
 /* Added border radius */
-.profile__add-button{
-    grid-column: 4;
-    width: 150px;
-    height: 50px;
-    align-self: center;
-    justify-self: center;
-    margin-left: auto;
-    border: 2px #ffffff solid;
-    background: transparent url(../images/add.svg) no-repeat center;
-    border-radius: 2px;
+.profile__add-button {
+  grid-column: 4;
+  width: 150px;
+  height: 50px;
+  align-self: center;
+  justify-self: center;
+  margin-left: auto;
+  border: 2px #ffffff solid;
+  background: transparent url(../images/add.svg) no-repeat center;
+  border-radius: 2px;
+  min-width: 50px;
 }
 
 /* 
 Removed duplicate code and used svg for plus symbol
 */
-.profile__add-button:hover{
-    opacity: 0.6;
+.profile__add-button:hover {
+  opacity: 0.6;
 }
 
+@media (max-width: 425px) {
+  .profile {
+    flex-direction: column;
+    align-items: center; /* Center the profile section */
+    margin-top: 40px;
+    padding: 0;
+  }
 
-@media (max-width: 425px){
-    .profile {
-        flex-direction: column;
-        align-items: center; /* Center the profile section */
-        margin-top: 40px;
-    }
-    
-    
+  /* note to self go back and correct this */
 
-    /* note to self go back and correct this */
+  .profile__avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px auto;
+  }
 
-    .profile__avatar{
-        width: 120px;
-        height: 120px;
-        margin: 0 auto 20px auto;
-    }
+  .profile__info {
+    width: 282px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    .profile__info{
-        width: 282px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
+  /* Removed fixed text height */
+  .profile__title {
+    font-size: 22px;
+    line-height: 26.63px;
+    width: 196px;
+  }
 
-    /* Removed fixed text height */
-    .profile__title {
-        font-size: 22px;                     
-        line-height: 26.63px;
-        width: 196px;                            
-            
-    }
+  .profile__description {
+    text-align: center;
+    font-size: 14px;
+    line-height: 16.94px;
+    margin-top: 20px;
+  }
 
-    .profile__description{
-        text-align: center;
-        font-size: 14px;
-        line-height: 16.94px;
-        margin-top: 20px
-    }
 
-    .profile__edit-button{
-        margin-left: auto;
-        margin-right: auto;
-        height: 18px;
-        width: 18px;
-    }
+  /*
+  I do not know why once it gets to below 400px width the border of 
+  the profile-edit button dissapears unless I add it back
+  */
+  .profile__edit-button {
+    margin-left: auto;
+    margin-right: auto;
+    height: 18px;
+    width: 18px;
+    border: 1px #ffffff solid;
+  }
 
-    .profile__add-button{
-        width: 282px;
-        justify-self: center;
-        margin: 20px auto 0 auto;
-    }
-
-    
+  .profile__add-button {
+    width: 282px;
+    justify-self: center;
+    margin: 20px auto 0 auto;
+  }
 }

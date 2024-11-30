@@ -3,31 +3,52 @@ Changed border opacity
 Changed to min-height
 */
 .header {
-    margin-top: 45px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
-    border-bottom: 1px rgba(84, 84, 84, 0.7) solid;;
-    max-width: 880px;
-    min-height: 74px; 
+  margin-top: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  border-bottom: 1px rgba(84, 84, 84, 0.7) solid;
+  max-width: 880px;
+  min-height: 74px;
 }
 
 .header__logo {
-    width: 173px;
-    height: 33px;
+  width: 173px;
+  height: 33px;
 }
 
 .header__content {
-    display: flex;
-    margin-top: 20px;
-    max-width: 880px;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  margin-top: 20px;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@media (max-width: 775px) {
+/*
+In order to add sizing to the header__logo I am applying the max sizing to the block itself instead of the elements 
+*/
+
+@media (max-width: 900px){
     .header {
-        width: 100%; 
+        width: 100%;;
+        padding: 27px;
+      }
+}
+
+@media (max-width: 350px) {
+    .header{
+        max-width: 320px;
+        max-height: 56x;
+        max-height: 52px;   
+        margin-top: 28px;
+        padding-left: 27px;
+    }
+
+    .header__logo{
+        max-width: 126px;
+        max-height: 24px; 
+        margin: 0;
+        padding: 0;
     }
 }
-

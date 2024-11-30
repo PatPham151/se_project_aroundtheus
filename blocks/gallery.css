@@ -1,10 +1,14 @@
+/* 
+Corrected distance between gallery and profile via subtracting each element height and gap from top of page to 
+where gallery starts
+*/
 
 .gallery {
-    display: grid; 
-    margin-top: 20px;
-    max-width: 880px;
-    margin-left: auto;
-    margin-right: auto;
+  display: grid;
+  margin-top: 51px;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 
@@ -14,12 +18,12 @@ Reseted Margin
 */
 
 .gallery__cards {
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
-    grid-gap: 20px 18px;
-    margin:0 auto 0 auto;
-    padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
+  grid-gap: 20px 18px;
+  margin: 0 auto 0 auto;
+  padding: 0;
 }
 
 /* 
@@ -29,23 +33,23 @@ Put the max width in largest to smallest order
 */
 /* Tablet view - 900px or less */
 @media (max-width: 900px) {
-    .gallery__cards {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns layout */
-    }
+  .gallery__cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns layout */
+  }
 }
 
 /* Mobile view - 620px or less */
-@media (max-width: 620px){
-    .gallery__cards {
-        grid-template-columns: 1fr; /* 1 column layout */
-    }
+@media (max-width: 620px) {
+  .gallery__cards {
+    grid-template-columns: 1fr; /* 1 column layout */
+  }
 }
 
 @media (max-width: 425px) {
-    .gallery {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Center the gallery in column layout */
-        margin-top: 40px;
-    }
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the gallery in column layout */
+    margin-top: 40px;
+  }
 }
