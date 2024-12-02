@@ -4,8 +4,6 @@
   width: 100%;
 }
 
-/* combined two different media queries with similar properties */
-
 @media (max-width: 1280px) {
   .page {
     margin: 0;

@@ -1,12 +1,9 @@
-/* Removed assinged max-height, max-width must be kept in order to show that when theres too many words it ends in ellipses */
 
 .card {
   margin: 0;
   padding: 0;
   max-width: 282px;
 }
-
-
 
 .card__image {
   width: 282px;
@@ -15,8 +12,6 @@
   border-top-right-radius: 10px;
   display: block;
 }
-
-/* Changed padding */
 
 .card__description {
   border-bottom-left-radius: 10px;
@@ -28,8 +23,6 @@
   align-items: center;
   padding: 25px;
 }
-
-/* added line-height from Figma */
 
 .card__title {
   margin: 0;
@@ -44,8 +37,6 @@
   line-height: 29.05px;
 }
 
-/* Added cursor pointer */
-
 .card__like-button {
   order: 2;
   width: 21px;
@@ -54,8 +45,6 @@
   border: none;
   cursor: pointer;
 }
-
-/* Removed duplicated values and no longer loads a different icon */
 
 .card__like-button:hover {
   opacity: 0.5;

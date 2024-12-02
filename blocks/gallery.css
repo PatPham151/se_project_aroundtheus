@@ -1,7 +1,3 @@
-/* 
-Corrected distance between gallery and profile via subtracting each element height and gap from top of page to 
-where gallery starts
-*/
 
 .gallery {
   display: grid;
@@ -12,36 +8,27 @@ where gallery starts
 
 }
 
-/* 
-Used shorthand for grid-template-columns 
-Reseted Margin
-*/
 
 .gallery__cards {
   list-style-type: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px 18px;
   margin: 0 auto 0 auto;
   padding: 0;
 }
 
-/* 
-Mobile view - 425px or less 
-Moved profile to its own stylesheet 
-Put the max width in largest to smallest order
-*/
-/* Tablet view - 900px or less */
+
 @media (max-width: 900px) {
   .gallery__cards {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns layout */
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
-/* Mobile view - 620px or less */
+
 @media (max-width: 620px) {
   .gallery__cards {
-    grid-template-columns: 1fr; /* 1 column layout */
+    grid-template-columns: 1fr; 
   }
 }
 
@@ -49,7 +36,7 @@ Put the max width in largest to smallest order
   .gallery {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the gallery in column layout */
+    align-items: center; 
     margin-top: 40px;
   }
 }

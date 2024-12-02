@@ -1,7 +1,4 @@
-/* 
-Changed border opacity
-Changed to min-height
-*/
+
 .header {
   margin-top: 45px;
   margin-left: auto;
@@ -25,30 +22,26 @@ Changed to min-height
   margin-right: auto;
 }
 
-/*
-In order to add sizing to the header__logo I am applying the max sizing to the block itself instead of the elements 
-*/
 
-@media (max-width: 900px){
+/* min-height removed and I used padding-top & padding-bottom to make it look like the Figma specifications */
+@media screen and (max-width: 621px) {
     .header {
-        width: 100%;;
-        padding: 27px;
-      }
-}
-
-@media (max-width: 350px) {
-    .header{
-        max-width: 320px;
-        max-height: 56x;
-        max-height: 52px;   
-        margin-top: 28px;
-        padding-left: 27px;
-    }
-
-    .header__logo{
-        max-width: 126px;
-        max-height: 24px; 
+        padding-top: 10px;
+        padding-bottom: 10px;
         margin: 0;
-        padding: 0;
+        display: flex;
+        align-items: center;
     }
-}
+
+    .header__content{
+        margin:0;
+        padding:0;
+    }
+  
+    .header__logo {
+      width: 126px;
+      height: 24px;
+      margin: 0 0 0 27px;
+    }
+  }
+
