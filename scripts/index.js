@@ -25,7 +25,3 @@ const initialCards = [
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg"
     }
   ];
-  
-  // Output initial cards to the console (for testing purposes)
-  console.log(initialCards);
-  

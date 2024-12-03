@@ -1,0 +1,112 @@
+.modal{
+    position: fixed; 
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    padding: 19px;
+    
+}
+
+.modal__container{
+    padding-left: 36px;
+    padding-right: 36px;
+    background-color: #fff;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.modal__close{
+    background-image: url(../images/Close\ Icon.svg);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-width: 40px;
+    min-height: 40px;
+    border: none;
+    position: absolute;
+    top: -45px; 
+    right: -45px;
+    cursor: pointer;
+}
+
+.modal__heading{
+    color: black;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29.05px;
+    margin-bottom: 54px;
+    margin-top: 34px;
+}
+
+.modal__form{
+    margin:0;
+    padding: 0;
+}
+
+.modal__form-name{
+    width: -webkit-fill-available;
+    height: 27.26px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+    margin: 0;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+}
+
+.modal__form-description{
+    width: -webkit-fill-available;
+    height: 27.26px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+    margin-top: 30px;
+    
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.modal__submit{
+    border-radius: 2px;
+    width: -webkit-fill-available;
+    height: 50px;
+    margin: 0;
+    margin-top: 48px;
+    margin-bottom: 36.5px;
+    background-color: black;
+    color: white;
+    border-radius: 2px;
+
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+@media (max-width: 585px) {
+    .modal__close{
+        top: -55px;
+        right: 0px;
+    }
+}
