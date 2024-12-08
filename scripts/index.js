@@ -103,7 +103,7 @@ const initialCards = [
   // Loop through the cards array and append the card element
   for (let i = 0; i < initialCards.length; i++) {
     const cardElement = getCardElement(initialCards[i]); // Get card element with data
-    document.querySelector('.card__list').appendChild(cardElement); // Append it to the card list
+    document.querySelector('.gallery__cards').appendChild(cardElement); // Append it to the card list
   }
 
 
