@@ -9,7 +9,10 @@
     display: flex;
     padding: 19px;
     display: none;
-    
+}
+
+.modal__opened{
+    display: flex; 
 }
 
 .modal__container{
@@ -50,9 +53,16 @@
 .modal__form{
     margin:0;
     padding: 0;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
 }
 
-.modal__form-name{
+.modal__input:first-of-type{
     width: -webkit-fill-available;
     height: 27.26px;
     border-top: none;
@@ -60,18 +70,9 @@
     border-right: none;
     border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
     margin: 0;
-
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 16.94px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-
 }
 
-.modal__form-description{
+.modal__input:last-of-type{
     width: -webkit-fill-available;
     height: 27.26px;
     border-top: none;
@@ -79,14 +80,16 @@
     border-right: none;
     border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
     margin-top: 30px;
-    
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 16.94px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+}
+
+.modal__input-description{
+    width: -webkit-fill-available;
+    height: 27.26px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+    margin-top: 30px;
 }
 
 .modal__submit{
@@ -109,5 +112,15 @@
     .modal__close{
         top: -55px;
         right: 0px;
+    }
+
+    .modal__heading{
+        font-size: 18px;
+        line-height: 21.78px;
+        margin-bottom: 75px;
+    }
+
+    .modal__submit{
+        font-size: 14px;
     }
 }
