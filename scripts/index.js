@@ -30,7 +30,7 @@ const cardTemplate = document.querySelector('#card__template').content.firstElem
 
 // Open modal when edit button is clicked
 profileEditBtn.addEventListener('click', function() {
-  modal.classList.add('modal__opened');
+  modal.classList.add('modal_opened');
   profileNameInput.value = profileExistingName.textContent;
   profileDescInput.value = profileExistingDesc.textContent;
 });
@@ -51,7 +51,7 @@ modalForm.addEventListener('submit', function(event) {
 
 // Function to close the modal
 function closeProfileModal() {
-  modal.classList.remove('modal__opened');
+  modal.classList.remove('modal_opened');
 }
 
 // Function to change profile info
