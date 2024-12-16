@@ -118,9 +118,17 @@
         font-size: 18px;
         line-height: 21.78px;
         margin-bottom: 75px;
+        margin-top: 25px;
     }
 
     .modal__submit{
         font-size: 14px;
+        margin-top: 45px;
+        margin-bottom: 48px;
+    }
+
+    .modal__container{
+        padding-left: 22px;
+        padding-right: 22px;
     }
 }

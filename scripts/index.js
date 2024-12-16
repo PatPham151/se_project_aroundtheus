@@ -20,7 +20,7 @@ const modalForm = document.querySelector('.modal__form');
 const profileExistingName = document.querySelector('.profile__title');
 const profileExistingDesc = document.querySelector('.profile__description');
 const profileNameInput = document.querySelector("[name='title']");
-const profileDescInput = document.querySelector('.modal__input-description');
+const profileDescInput = document.querySelector("[name='about']");
 const cardTemplate = document.querySelector('#card__template').content.firstElementChild;
 
 
