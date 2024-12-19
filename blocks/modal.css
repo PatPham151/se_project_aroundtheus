@@ -112,6 +112,8 @@
     .modal__close{
         top: -55px;
         right: 0px;
+        min-width: 26px;
+        min-height: 26px;
     }
 
     .modal__heading{
@@ -124,7 +126,7 @@
     .modal__submit{
         font-size: 14px;
         margin-top: 45px;
-        margin-bottom: 48px;
+        margin-bottom: 25px;
     }
 
     .modal__container{
