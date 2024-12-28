@@ -8,21 +8,58 @@
     z-index: 999;
     display: flex;
     padding: 19px;
-    display: none;
+    visibility: hidden; /* Start hidden */
+    opacity: 0;        /* Fully transparent */
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s; /* Smooth fade */
 }
 
-.picture__modal_opened{
-    display: flex;
+.picture__modal_opened {
+    visibility: visible; /* Become visible */
+    opacity: 1;         /* Fully opaque */
+    transition: opacity 0.5s ease; /* Smooth fade */
 }
 
-.picture__container_close{
+
+.picture__container {
+    margin: auto;
+    position: relative;
+}
+
+.picture__container_close {
     background: transparent url(../images/Close\ Icon.svg) no-repeat center;
     min-width: 40px;
     min-height: 40px;
-   
+    position: absolute; 
+    top: -45px; 
+    right: -45px;
+    cursor: pointer;
 }
 
-.picture__modal_image{
-    margin-left: auto;
-    margin-right: auto;
+.picture__modal_description {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-top: 10px;
+}
+
+.picture__modal_image {
+    max-height: 540px;
+}
+
+@media (max-width: 585px) {
+    .picture__modal_image{
+        max-width: 240px;
+    }
+
+    .picture__container_close{
+        top: -25px;
+        right: -25px;
+        min-width: 26px;
+        min-height: 26px;
+    }
+
 }
