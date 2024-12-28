@@ -73,9 +73,46 @@
       </div>
     </div>
 
+
+    <!-- Add__modal (hidden by default) -->
+     <div class="add__modal">
+      <div class="add__modal_container">
+        <button class="add__modal_close"></button>
+        <p class="add__modal_heading">New Place</p>
+        <form class="add__modal_form">
+          <input 
+          type="text" 
+          name="name" 
+          class="add__modal_input"
+          placeholder="Title"
+          />
+
+          <input
+          type="type"
+          name="url"
+          class="add__modal_input"
+          placeholder="Image URL"
+          />
+        
+          <button class="add__modal_submit" name="add__modal_submit">Save</button>
+        </form>
+      </div>
+     </div>
+
+     <div class="picture__modal">
+      <div class="picture__container">
+        <button class="picture__container_close"></button>
+        <img src="" alt="" class="picture__modal_image">
+      </div>
+     </div>
+
     <template id="card__template">
       <li class="card">
-        <img src="" alt="" class="card__image" />
+        <div class="card__content">
+          <button class="card__delete"></button>
+          <img src="" alt="" class="card__image"/>
+        </div>
+        
         <div class="card__description">
           <h2 class="card__title">Yosemite Valley</h2>
           <button class="card__like-button" type="button"></button>

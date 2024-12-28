@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   max-width: 282px;
+  position: relative;
 }
 
 .card__image {
@@ -11,6 +12,21 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: block;
+  cursor: pointer;
+}
+
+.card__delete { 
+  background: transparent url(../images/Trash.svg) no-repeat center;
+  min-width: 18px;
+  min-height: 19.3px;
+  position: absolute; 
+  right: 15px;
+  top: 15px;
+  border: none;
+}
+
+.card__delete:hover{
+  opacity: 0.6;
 }
 
 .card__description {
@@ -44,6 +60,10 @@
   background: transparent url(../images/like.svg) no-repeat center;
   border: none;
   cursor: pointer;
+}
+
+.card__like-button.card__like-button--active  {
+  background: transparent url(../images/Union.svg) no-repeat center;
 }
 
 .card__like-button:hover {

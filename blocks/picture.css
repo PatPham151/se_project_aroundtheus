@@ -1,0 +1,28 @@
+.picture__modal {
+    position: fixed; 
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    padding: 19px;
+    display: none;
+}
+
+.picture__modal_opened{
+    display: flex;
+}
+
+.picture__container_close{
+    background: transparent url(../images/Close\ Icon.svg) no-repeat center;
+    min-width: 40px;
+    min-height: 40px;
+   
+}
+
+.picture__modal_image{
+    margin-left: auto;
+    margin-right: auto;
+}
