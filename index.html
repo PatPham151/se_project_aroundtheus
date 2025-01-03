@@ -50,7 +50,8 @@
       <p class="footer__copyright">2024 Around the U.S</p>
     </footer>
 
-    <!-- Modal (hidden by default) -->
+    <!-- Modal Template (hidden by default) -->
+
     <div class="modal">
       <div class="modal__container">
         <button class="modal__close"></button>
@@ -74,38 +75,44 @@
     </div>
 
 
-    <!-- Add__modal (hidden by default) -->
-     <div class="add__modal">
-      <div class="add__modal_container">
-        <button class="add__modal_close"></button>
-        <p class="add__modal_heading">New Place</p>
-        <form class="add__modal_form">
+    <!-- Add modal (hidden by default) -->
+
+     <div class="modal" id="modal__add">
+      <div class="modal__container">
+        <button class="modal__close" id="add__modal_close"></button>
+        <p class="modal__heading">New Place</p>
+        <form class="modal__form" id="add__modal_form">
           <input 
           type="text" 
           name="name" 
-          class="add__modal_input"
+          class="modal__input"
           placeholder="Title"
           />
 
           <input
           type="url"
           name="url"
-          class="add__modal_input"
+          class="modal__input"
           placeholder="Image URL"
           />
         
-          <button class="add__modal_submit" name="add__modal_submit">Save</button>
+          <button class="modal__submit" name="modal_submit">Save</button>
         </form>
       </div>
      </div>
 
-     <div class="picture__modal">
-      <div class="picture__container">
-        <button class="picture__container_close"></button>
-        <img src="" alt="" class="picture__modal_image">
-        <p class="picture__modal_description"></p>
+     <!-- Picture Modal (hidden by default) -->
+
+     <div class="modal" id="modal__picture">
+      <div class="modal__image-container">
+        <button class='modal__close' id="picture__container_close"></button>
+        <img src="" alt="" class="modal__image">
+        <p class="modal__image-description"></p>
       </div>
      </div>
+
+
+     <!--  Card Template -->
 
     <template id="card__template">
       <li class="card">

@@ -8,11 +8,15 @@
     z-index: 999;
     display: flex;
     padding: 19px;
-    display: none;
+    visibility: hidden; /* Start hidden */
+    opacity: 0;        /* Fully transparent */
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s; /* Smooth fade */
 }
 
 .add_opened{
-    display: flex;
+    visibility: visible; /* Become visible */
+    opacity: 1;         /* Fully opaque */
+    transition: opacity 0.5s ease; /* Smooth fade */
 }
 
 .add__modal_container{
@@ -24,17 +28,6 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-}
-
-.add__modal_close{
-    background: transparent url(../images/Close\ Icon.svg) no-repeat center;
-    min-width: 40px;
-    min-height: 40px;
-    border: none;
-    position: absolute;
-    top: -45px;
-    right: -45px;
-    cursor: pointer;
 }
 
 .add__modal_heading{
