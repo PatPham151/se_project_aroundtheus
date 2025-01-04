@@ -21,6 +21,7 @@ const profileExistingName = document.querySelector('.profile__title');
 const profileExistingDesc = document.querySelector('.profile__description');
 const profileNameInput = document.querySelector("[name='title']");
 const profileDescInput = document.querySelector("[name='about']");
+const profileModal = document.getElementById('profileModal');
 
 const addModal = document.querySelector('#modal__add');
 const addModalForm = document.querySelector('#add__modal_form');
@@ -36,7 +37,7 @@ const cardImageModalDesc = document.querySelector('.modal__image-description');
 
 // Edit modal functionality
 profileEditBtn.addEventListener('click', () => {
-  openModal(modals[0]);
+  openModal(profileModal);
   profileNameInput.value = profileExistingName.textContent;
   profileDescInput.value = profileExistingDesc.textContent;
 });
@@ -46,7 +47,7 @@ profileForm.addEventListener('submit', function (event) {
   event.preventDefault();
   profileExistingName.textContent = profileNameInput.value.trim() || profileExistingName.textContent;
   profileExistingDesc.textContent = profileDescInput.value.trim() || profileExistingDesc.textContent;
-  closeModal(modals[0]);
+  closeModal(profileModal);
 });
 
 // Add image modal functionality

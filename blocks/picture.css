@@ -51,7 +51,7 @@
 }
 
 @media (max-width: 585px) {
-    .picture__modal_image{
+    .modal__image{
         max-width: 240px;
     }
 
