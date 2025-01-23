@@ -38,15 +38,7 @@ modals.forEach((modal) => {
   });
 });
 
-//Close modal on esc key
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    const openModal = document.querySelector(".modal.modal_opened");
-    if (openModal) {
-      closeModal(openModal);
-    }
-  }
-});
+
 
 // Edit modal functionality
 profileEditBtn.addEventListener('click', () => {
@@ -78,13 +70,18 @@ addModalForm.addEventListener('submit', (event) => {
 /*---------------------------------------------------------------------------*/
 /*---                             Functions                             -----*/
 /*---------------------------------------------------------------------------*/
+
+
+
 // Open modal function
 function openModal(modal) {
   modal.classList.add('modal_opened');
+  document.addEventListener("keydown", handleEscClose);
 }
 // Close modal function
 function closeModal(modal) {
   modal.classList.remove('modal_opened');
+  document.removeEventListener("keydown", handleEscClose);
 }
 // Picture modal functionality
 function openPictureModal(cardData) {
@@ -97,6 +94,17 @@ function openPictureModal(cardData) {
 modals.forEach(modal => {
   modal.querySelector('.modal__close').addEventListener('click', () => closeModal(modal));
 });
+
+//Close modal on esc key
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openModal = document.querySelector(".modal.modal_opened");
+    if (openModal) {
+      closeModal(openModal);
+    }
+  }
+}
+
 // Function to create card elements
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -120,6 +128,8 @@ function getCardElement(cardData) {
   cardImage.addEventListener('click', () => openPictureModal(cardData));
   return cardElement;
 }
+
+
 // Function to render cards
 function renderCards(cards, container) {
   cards.forEach(cardData => {
@@ -127,5 +137,7 @@ function renderCards(cards, container) {
     container.appendChild(cardElement);
   });
 }
+
+
 // Render initial cards
 renderCards(initialCards, cardList);

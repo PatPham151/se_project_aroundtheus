@@ -70,7 +70,7 @@
 
 .modal__field-group {
     position: relative; /* The error message is positioned relative to this container */
-    margin-bottom: 20px; /* Space between groups, adjust as needed */
+    margin-bottom: 30px; /* Space between groups, adjust as needed */
   }
 /* -----------------INPUT-------------------- */
 .modal__input {
@@ -95,7 +95,7 @@
     border-left: none;
     border-right: none;
     border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
-    margin-top: 30px;
+    
 }
 
 /* .modal__input-description{
@@ -142,16 +142,14 @@
 }
 
 .modal__image-description {
-    position: absolute;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-size: 12px;
-    max-width: 358px;
-    color: red;
-    opacity: 0;
-    top: calc(100% + 6px);
-    left: 0;
-    transition: opacity 0.3s;
-    /* Make sure 'z-index' is high enough so it isn't hidden behind anything */
-    z-index: 10; 
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-top: 10px;
 }
 
 .modal__image {
@@ -159,7 +157,7 @@
 }
 
 /* -------------------ERROR--------------------- */
-.modal__input_error {
+.modal__input-error {
     font-size: 12px;
     max-width: 358px;
     color: red;
@@ -170,7 +168,7 @@
     position: absolute;
 }
 
-.modal__input_error_active {
+.modal__input-error-active {
     opacity: 1;
 }
 
@@ -187,7 +185,10 @@
     }
 
     .modal__heading{
-        font-size: 18px;
+        font-size: 22px;
+        /* not the figma number but looks like how figma wants it to look
+        I've copied and pasted the figma numbers but it does not look the same */
+        font-weight: 900px;
         line-height: 21.78px;
         margin-bottom: 75px;
         margin-top: 25px;
@@ -202,6 +203,12 @@
     .modal__container{
         padding-left: 22px;
         padding-right: 22px;
+        min-width: 282px;
+    }
+
+    .modal__input {
+        min-width: 238px;
+        margin-top: 0px;
     }
 
     .modal__image{
