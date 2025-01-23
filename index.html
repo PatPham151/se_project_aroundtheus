@@ -31,11 +31,7 @@
 
         <div class="profile__info">
           <h1 class="profile__title">Jacques Cousteau</h1>
-          <button
-            class="profile__edit-button"
-            id="profile__edit-button"
-            type="button"
-          ></button>
+          <button class="profile__edit-button" id="profile__edit-button" type="button"></button>
           <p class="profile__description">Explorer</p>
         </div>
 
@@ -50,46 +46,81 @@
       <p class="footer__copyright">2024 Around the U.S</p>
     </footer>
 
-    <!-- Modal Template (hidden by default) -->
+    <!--Edit Profile Modal Template (hidden by default) -->
 
-    <div class="modal" id="profileModal">
-      <div class="modal__container">
-        <button class="modal__close"></button>
-        <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
-          <input type="text" name="title" class="modal__input" />
-          <input type="text" name="about" class="modal__input" />
-          <button class="modal__submit" name="modal__submit">Save</button>
-        </form>
+<div class="modal" id="profileModal">
+  <div class="modal__container">
+  <button class="modal__close"></button>
+  <p class="modal__heading">Edit Profile</p>
+    <form class="modal__form">
+      <div class="modal__field-group">
+
+        <input 
+          type="text" 
+          name="title" 
+          class="modal__input" 
+          id="name-input" 
+          minlength="2" 
+          maxlength="40" 
+          required/>
+
+          <span class="modal__input_error name-input-error"></span>
       </div>
+
+      <div class="modal__field-group">
+        <input 
+          type="text" 
+          name="about" 
+          class="modal__input" 
+          id="description-input"
+          minlength="2" 
+          maxlength="200" 
+          required/>
+        <span class="modal__input_error description-input-error" ></span>
+      </div>
+
+      <button class="modal__submit" name="modal__submit">Save</button>
+    </form>
+  </div>
+</div>
+
+
+    <!-- Add New Picture Modal (hidden by default) -->
+
+<div class="modal" id="modal__add">
+  <div class="modal__container">
+  <button class="modal__close" id="add__modal_close"></button>
+  <p class="modal__heading">New Place</p>
+    <form class="modal__form" id="add__modal_form">
+    <div class="modal__field-group">
+      <input 
+          type="text" 
+          id="picture-input" 
+          name="name"
+          class="modal__input" 
+          placeholder="Title" 
+          minlength="1" 
+          maxlength="30" 
+          required/>
+
+        <span class="modal__input_error picture-input-error"></span>
     </div>
 
+    <div class="modal__field-group">
+      <input 
+        type="url" 
+        name="url"
+        id="url-input" 
+        class="modal__input" 
+        placeholder="Image URL" 
+        required/>
 
-    <!-- Add modal (hidden by default) -->
-
-     <div class="modal" id="modal__add">
-      <div class="modal__container">
-        <button class="modal__close" id="add__modal_close"></button>
-        <p class="modal__heading">New Place</p>
-        <form class="modal__form" id="add__modal_form">
-          <input 
-          type="text" 
-          name="name" 
-          class="modal__input"
-          placeholder="Title"
-          />
-
-          <input
-          type="url"
-          name="url"
-          class="modal__input"
-          placeholder="Image URL"
-          />
-        
-          <button class="modal__submit" name="modal_submit">Save</button>
-        </form>
+        <span class="modal__input_error url-input-error"></span>
       </div>
-     </div>
+    <button class="modal__submit" name="modal_submit">Save</button>
+    </form>
+  </div>
+</div>
 
      <!-- Picture Modal (hidden by default) -->
 
@@ -119,5 +150,7 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script> 
+    
   </body>
 </html>

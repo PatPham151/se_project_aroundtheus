@@ -21,6 +21,7 @@
 
 .modal__container{
     padding-left: 36px;
+    width: auto;
     padding-right: 36px;
     background-color: #fff;
     margin: auto;
@@ -64,6 +65,17 @@
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
+    position: relative;
+}
+
+.modal__field-group {
+    position: relative; /* The error message is positioned relative to this container */
+    margin-bottom: 20px; /* Space between groups, adjust as needed */
+  }
+/* -----------------INPUT-------------------- */
+.modal__input {
+    min-width: 400px;
+
 }
 
 .modal__input:first-of-type{
@@ -86,7 +98,7 @@
     margin-top: 30px;
 }
 
-.modal__input-description{
+/* .modal__input-description{
     width: -webkit-fill-available;
     height: 27.26px;
     border-top: none;
@@ -94,8 +106,12 @@
     border-right: none;
     border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
     margin-top: 30px;
-}
+} */
 
+
+
+
+/* --------------SUBMIT------------------------ */
 .modal__submit{
     border-radius: 2px;
     width: -webkit-fill-available;
@@ -113,27 +129,54 @@
     cursor: pointer;
 }
 
+.modal__submit_inactive {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.5);
+    border:rgba(0, 0, 0, 0.5) 1px solid;
+}
+
+/* -----------------IMAGE------------------------ */
 .modal__image-container {
     margin: auto;
     position: relative;
 }
 
 .modal__image-description {
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    position: absolute;
     font-size: 12px;
-    font-weight: 400;
-    line-height: 14.52px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    margin-top: 10px;
+    max-width: 358px;
+    color: red;
+    opacity: 0;
+    top: calc(100% + 6px);
+    left: 0;
+    transition: opacity 0.3s;
+    /* Make sure 'z-index' is high enough so it isn't hidden behind anything */
+    z-index: 10; 
 }
 
 .modal__image {
     max-height: 540px;
 }
 
+/* -------------------ERROR--------------------- */
+.modal__input_error {
+    font-size: 12px;
+    max-width: 358px;
+    color: red;
+    opacity: 0;
+    top: calc(100% + 6px);
+    left: 0;
+    transition: 0.3s;
+    position: absolute;
+}
 
+.modal__input_error_active {
+    opacity: 1;
+}
+
+.modal__input_type_error {
+    border-bottom: 1px solid red !important; 
+  }
 
 @media (max-width: 585px) {
     .modal__close{
