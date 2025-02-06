@@ -1,5 +1,5 @@
 import Card from "../components/Card.js";
-import FormValidator from "../components/Validation.js";
+import FormValidator from "../components/FormValidator.js";
 
 const config = {
   formSelector: ".modal__form",
@@ -115,11 +115,13 @@ modals.forEach((modal) => {
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscClose);
+  document.addEventListener("keydown", handlePictureModalEscClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscClose);
+  document.removeEventListener("keydown", handlePictureModalEscClose);
 }
 
 function handleEscClose(evt) {
@@ -130,3 +132,17 @@ function handleEscClose(evt) {
     }
   }
 }
+
+function handlePictureModalEscClose(evt) { 
+  if (evt.key === "Escape") {
+    const openPictureModal = document.querySelector('#modal__picture.modal_opened'); // ✅ Correct selector
+    if (openPictureModal) {
+      closeModal(openPictureModal);
+    }
+  }
+}
+
+document.addEventListener("keydown", handlePictureModalEscClose);
+
+
+

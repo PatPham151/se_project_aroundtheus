@@ -37,6 +37,7 @@ export default class FormValidator {
         buttonElement.disabled = false;
       }
     }
+
   
     _checkInputValidity(formElement, inputElement) {
       if (!inputElement.validity.valid) {
@@ -62,9 +63,18 @@ export default class FormValidator {
     enableValidation() {
       const formElements = [...document.querySelectorAll(this._formSelector)];
       formElements.forEach((formElement) => {
-        formElement.addEventListener("submit", (e) => e.preventDefault());
-        this._setEventListeners(formElement);
+          formElement.addEventListener("submit", (e) => {
+              e.preventDefault();
+              const inputElements = [...formElement.querySelectorAll(this._inputSelector)];
+              const buttonElement = formElement.querySelector(this._submitButtonSelector);
+  
+              inputElements.forEach((inputElement) => this._checkInputValidity(formElement, inputElement));
+              this._toggleSubmitButton(inputElements, buttonElement);
+          });
+  
+          this._setEventListeners(formElement);
       });
-    }
+  }
+  
   }
   

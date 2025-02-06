@@ -13,6 +13,14 @@ export default class Card{
         return cardElement;
     }
 
+    #likeFunction() { 
+        this._likeButton.classList.toggle('card__like-button--active');
+    }
+
+    #deleteFunction() {
+        this._element.remove();
+    }
+
     _generateCard() {
         this._element = this._getTemplate();
         this._imageElement = this._element.querySelector(".card__image");
@@ -23,15 +31,11 @@ export default class Card{
 
         //Like Button functionality 
         this._likeButton = this._element.querySelector(".card__like-button");
-        this._likeButton.addEventListener('click', ()=>{
-            this._likeButton.classList.toggle('card__like-button--active');
-        })
+        this._likeButton.addEventListener("click", () => this.#likeFunction());
 
         //Delete Button functionality
         this._deleteButton =  this._element.querySelector(".card__delete");
-        this._deleteButton.addEventListener('click', () => {
-            this._element.remove(); 
-        });
+        this._deleteButton.addEventListener('click', () => this.#deleteFunction());
         
         //Picture modal functionality
         this._imageElement.addEventListener('click', ()=>{
