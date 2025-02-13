@@ -185,7 +185,7 @@
     }
 
     .modal__heading{
-        font-size: 22px;
+        font-size: 18px;
         /* not the figma number but looks like how figma wants it to look
         I've copied and pasted the figma numbers but it does not look the same */
         font-weight: 900px;
