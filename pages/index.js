@@ -1,4 +1,4 @@
-import Card from "../components/Card.js";
+import Card from "../components/Card.js"; //<----------------Already capitalized 
 import FormValidator from "../components/FormValidator.js";
 
 const config = {
@@ -63,6 +63,7 @@ initialCards.forEach((cardData) => {
 
 profileEditBtn.addEventListener("click", () => {
   openModal(profileModal);
+  profileValidator.resetValidation(); 
   profileNameInput.value = profileExistingName.textContent;
   profileDescInput.value = profileExistingDesc.textContent;
 });
@@ -75,9 +76,8 @@ profileForm.addEventListener("submit", (event) => {
 });
 
 addModalOpenBtn.addEventListener("click", () => {
+  addCardValidator.resetValidation();
   openModal(addModal);
-  addCardSubmitButton.classList.add(config.inactiveButtonClass);
-  addCardSubmitButton.disabled = true;
 });
 
 modals.forEach(modal => {
@@ -94,8 +94,8 @@ addModalForm.addEventListener("submit", (event) => {
   if (newCardData.name && newCardData.link) {
     cardList.prepend(createCard(newCardData)); 
     addModalForm.reset();
-    addCardSubmitButton.classList.add(config.inactiveButtonClass);
-    addCardSubmitButton.disabled = true;
+    
+    
     closeModal(addModal);
   }
 });
@@ -111,13 +111,8 @@ modals.forEach((modal) => {
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscClose);
-  
-  if (modal === addModal) {
-    addCardValidator.resetValidation();
-  } else if (modal === profileModal) {
-    profileValidator.resetValidation();
-  }
 }
+
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");

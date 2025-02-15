@@ -185,7 +185,7 @@
     }
 
     .modal__heading{
-        font-size: 18px;
+        font-size: 18px; /*<-------- as per the brief*/
         /* not the figma number but looks like how figma wants it to look
         I've copied and pasted the figma numbers but it does not look the same */
         font-weight: 900px;
@@ -195,7 +195,7 @@
     }
 
     .modal__submit{
-        font-size: 14px;
+        font-size: 14px; /*<-------- as per the brief*/
         margin-top: 45px;
         margin-bottom: 25px;
     }
@@ -203,7 +203,7 @@
     .modal__container{
         padding-left: 22px;
         padding-right: 22px;
-        min-width: 282px;
+        
     }
 
     .modal__input {
