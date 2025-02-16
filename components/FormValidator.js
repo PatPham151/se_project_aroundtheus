@@ -68,12 +68,10 @@ export default class FormValidator {
   }
 
   enableValidation() {
-      this._formElement.addEventListener("submit", (e) => {
-          e.preventDefault();
-          this._inputElements.forEach((inputElement) => this._checkInputValidity(inputElement));
-          this._toggleSubmitButton();
-      });
+    this._formElement.addEventListener("submit", (e) => {
+        e.preventDefault();
+    });
+    this._setEventListeners();
+}
 
-      this._setEventListeners();
-  }
 }

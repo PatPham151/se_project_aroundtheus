@@ -33,10 +33,6 @@ export default class Card{
         });
     }
 
-    resetValidation(){
-        this._toggleButtonState(); 
-    }
-
     generateCard() {
         this._element = this._getTemplate();
         this._imageElement = this._element.querySelector(".card__image");
