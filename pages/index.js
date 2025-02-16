@@ -1,4 +1,4 @@
-import Card from "../components/Card.js"; //<----------------Already capitalized 
+import Card from "../components/Cards.js"; //<----------------Already capitalized 
 import FormValidator from "../components/FormValidator.js";
 
 const config = {
