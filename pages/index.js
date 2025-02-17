@@ -76,7 +76,6 @@ profileForm.addEventListener("submit", (event) => {
 });
 
 addModalOpenBtn.addEventListener("click", () => {
-  addCardValidator.resetValidation();
   openModal(addModal);
 });
 
@@ -94,7 +93,7 @@ addModalForm.addEventListener("submit", (event) => {
   if (newCardData.name && newCardData.link) {
     cardList.prepend(createCard(newCardData)); 
     addModalForm.reset();
-    
+    addCardValidator.toggleSubmitButton();
     
     closeModal(addModal);
   }
@@ -123,14 +122,9 @@ function closeModal(modal) {
 function handleEscClose(evt) {
   if (evt.key === "Escape") {
     const openModal = document.querySelector(".modal.modal_opened");
-    const openPictureModal = document.querySelector("#modal__picture.modal_opened"); 
-
-    if (openPictureModal) {
-      closeModal(openPictureModal); 
-    } else if (openModal) {
-      closeModal(openModal);
-    }
+    closeModal(openModal);
   }
 }
+//Thank you for your help! 
 
 
