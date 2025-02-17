@@ -27,27 +27,21 @@ export default class FormValidator {
   }
 
   _toggleSubmitButton() {
-      if (this._hasInvalidInput()) {
-          this._buttonElement.classList.add(this._config.inactiveButtonClass);
-          this._buttonElement.disabled = true;
-      } else {
-          this._buttonElement.classList.remove(this._config.inactiveButtonClass);
-          this._buttonElement.disabled = false;
-      }
-  }
+    if (this._hasInvalidInput()) {
+        this._buttonElement.classList.add(this._config.inactiveButtonClass);
+        this._buttonElement.disabled = true;
+    } else {
+        this._buttonElement.classList.remove(this._config.inactiveButtonClass);
+        this._buttonElement.disabled = false;
+    }
+}
 
-  resetValidation() {
-    this._inputElements.forEach((inputElement) => {
-      this._hideInputError(inputElement);
-    });
-    if (!this._hasInvalidInput()) {
-      this._buttonElement.classList.remove(this._config.inactiveButtonClass);
-      this._buttonElement.disabled = false; 
-  } else {
-      this._buttonElement.classList.add(this._config.inactiveButtonClass);
-      this._buttonElement.disabled = true; 
-  }
-  }
+resetValidation() {
+  this._inputElements.forEach((inputElement) => {
+    this._hideInputError(inputElement);
+  });
+  this._toggleSubmitButton();
+}
 
   _checkInputValidity(inputElement) {
       if (!inputElement.validity.valid) {

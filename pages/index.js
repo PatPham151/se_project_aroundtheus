@@ -1,4 +1,4 @@
-import Card from "../components/Cards.js"; //<----------------Already capitalized 
+import Card from "../components/Cards.js"; 
 import FormValidator from "../components/FormValidator.js";
 
 const config = {
@@ -133,4 +133,4 @@ function handleEscClose(evt) {
   }
 }
 
-document.addEventListener("keydown", handleEscClose);
+
