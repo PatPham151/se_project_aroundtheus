@@ -14,6 +14,14 @@ module.exports = {
     filename: "main.js",
     publicPath: "",
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "../src/index.html",
+      favicon: "../src/images/favicon.ico", // path to the favicon
+    }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+  ],
   target: ["web", "es5"],
   stats: "errors-only",
   mode: "development",
