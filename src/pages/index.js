@@ -4,7 +4,7 @@ import PopupWithImage from "../components/PopupWithPictures.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
-import { initialCards, config } from "../components/Utils.js";
+import { initialCards, config } from "../utils/constants.js";
 import "../pages/index.css"
 
 //---------------------RENDERING INITIAL CARDS-------------------
@@ -20,7 +20,7 @@ const cardSection = new Section(
   ".gallery__cards"
 );
 
-// ✅ Render initial cards
+// Render initial cards
 cardSection.renderItems();
 
 //---------------------FORMS AND SUBMITS--------------------------
@@ -37,7 +37,7 @@ profileValidator.enableValidation();
 const imagePopup = new PopupWithImage("#modal__picture");
 imagePopup.setEventListeners();
 
-// ✅ Initialize `UserInfo`
+//  Initialize `UserInfo`
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description"
@@ -56,8 +56,16 @@ const addCardPopup = new PopupWithForm("#modal__add", (formData) => {
 
   if (newCardData.name && newCardData.link) {
     cardSection.addItem(createCard(newCardData));
+
+    // Only reset form on submit
+    document.querySelector("#add__modal_form").reset();
+
+    // Close popup after adding a card
+    addCardPopup.close();
   }
 });
+
+
 addCardPopup.setEventListeners();
 
 //---------------------CREATING & RENDER CARD--------------------
@@ -72,6 +80,9 @@ const profileEditBtn = document.getElementById("profile__edit-button");
 const profileNameInput = document.querySelector("[name='title']");
 const profileDescInput = document.querySelector("[name='about']");
 const addModalOpenBtn = document.querySelector(".profile__add-button");
+const pictureNameInput = document.querySelector("[name='name']");
+const pictureUrlInput = document.querySelector("[name='url']")
+const pictureSubmitButton = document.querySelector("#picture_submit");
 
 profileEditBtn.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
@@ -89,5 +100,8 @@ profileEditBtn.addEventListener("click", () => {
 
 // Event listener for opening the "Add Card" modal
 addModalOpenBtn.addEventListener("click", () => {
+  addCardValidator.resetValidation(); 
   addCardPopup.open();
 });
+
+

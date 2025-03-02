@@ -26,9 +26,5 @@ export default class PopupWithForm extends Popup {
       this.close();
     });
   }
-
-  // Override `open()` to reset the form
-  open() {
-    super.open();
-  }
+  
 }
