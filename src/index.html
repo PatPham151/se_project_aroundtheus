@@ -25,13 +25,15 @@
 
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/avatar.svg')%>" class="profile__avatar" />
-        <!-- Corrected button type -->
+        <div class="profile__avatar-container">
+          <img src="<%=require('./images/avatar.svg')%>" class="profile__avatar" />
+          <button class="profile__avatar-button" type="button"></button>
+        </div>
 
         <div class="profile__info">
-          <h1 class="profile__title">Jacques Cousteau</h1>
+          <h1 class="profile__title"></h1>
           <button class="profile__edit-button" id="profile__edit-button" type="button"></button>
-          <p class="profile__description">Explorer</p>
+          <p class="profile__description"></p>
         </div>
 
         <button class="profile__add-button" type="button"></button>
@@ -120,6 +122,39 @@
       </div>
     <button class="modal__submit" name="modal_submit" id="picture_submit">Save</button>
     </form>
+  </div>
+</div>
+
+<!-- Change Avatar -->
+
+<div class="modal" id="avatar__modal">
+  <div class="modal__container">
+    <button class="modal__close" id="avatar__modal_close"></button>
+    <p class="modal__heading">Change profile picture</p>
+    <form class="modal__form" id="avatar__modal_form">
+      <div class="modal__field-group">
+        <input 
+        type="url" 
+        name="avatar_url"
+        id="avatar-input"
+        class="modal__input"
+        placeholder="Avatar URL"
+        required/>
+
+        <span class="modal__input-error avatar-input-error"></span>
+      </div>
+      <button class="modal__submit" name="avatar__modal_submit" id="avatar_submit">Save</button>
+    </form>
+  </div>
+</div>
+
+<!--Are you sure? modal-->
+
+<div class="modal" id="confirmation__modal">
+  <div class="modal__container">
+    <button class="modal__close" id="confirmation__modal_close"></button>
+    <p class="modal__heading">Are you sure?</p>
+    <button class="modal__submit" id="confirmation__modal_submit">Yes</button>
   </div>
 </div>
 

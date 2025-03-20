@@ -1,0 +1,127 @@
+import Api from "./Api.js";
+
+export default class Card {
+    constructor(card, cardSelector, handleImageClick) { 
+        this._name = card.name;
+        this._link = card.link; 
+        this._cardId = card._id;
+        this._cardSelector = cardSelector;
+        this._handleImageClick = handleImageClick;
+        this._confirmation = document.querySelector("#confirmation__modal");
+        this._confirmationSubmitButton = document.querySelector("#confirmation__modal_submit");
+        this._confirmationCloseButton = document.querySelector("#confirmation__modal_close");
+        this._api = new Api({
+            baseUrl: "https://around-api.en.tripleten-services.com/v1",
+            headers: {
+                authorization: "5ccc6b19-133c-4069-8a7f-6b43c87f27eb",
+                "Content-Type": "application/json",
+            },
+        });
+
+        this._cardIdToDelete = null;
+        this._cardElementToDelete = null;
+    }
+
+    _getTemplate() {
+        const cardElement = document.querySelector(this._cardSelector).content.firstElementChild.cloneNode(true);
+        return cardElement;
+    }
+
+   #likeFunction() { 
+  if (!this._likeButton.classList.contains('card__like-button--active')) {
+    this._api.likeCard(this._cardId)
+      .then((res) => {
+        this._likeButton.classList.add('card__like-button--active');
+      })
+      .catch((err) => console.error("Error liking card:", err));
+  } else {
+    this._api.dislikeCard(this._cardId)
+      .then((res) => {
+        this._likeButton.classList.remove('card__like-button--active');
+      })
+      .catch((err) => console.error("Error disliking card:", err));
+  }
+}
+
+
+    #deleteFunction() {
+        if (!this._cardIdToDelete || !this._cardElementToDelete) {
+            console.error("Error: No card selected for deletion.");
+            return;
+        }
+
+        this._api.deletingCards(this._cardIdToDelete)
+            .then(() => {
+                this._cardElementToDelete.remove(); 
+                this._closeModal(); 
+            })
+            .catch((err) => {
+                console.error("Error deleting card from API:", err);
+            });
+
+        this._cardIdToDelete = null;
+        this._cardElementToDelete = null;
+        this._element.remove();
+    }
+
+    _openModal(cardId, cardElement) {
+        this._cardIdToDelete = cardId;
+        this._cardElementToDelete = cardElement;
+        this._confirmation.classList.add("modal_opened");
+        document.addEventListener("keydown", this._handleEscClose);
+    }
+
+    _closeModal() {
+        this._confirmation.classList.remove("modal_opened");
+        document.removeEventListener("keydown", this._handleEscClose);
+    }
+
+    _handleEscClose = (event) => {
+        if (event.key === "Escape") {
+            this._closeModal();
+        }
+    }
+
+    _setEventListeners() {
+        this._likeButton.addEventListener("click", () => this.#likeFunction());
+
+        this._deleteButton.addEventListener("click", () => {
+            this._openModal(this._cardId, this._element);
+        });
+        //this may need to be moved to index.js...-)
+        this._confirmationSubmitButton.addEventListener("click", () => {
+            this.#deleteFunction();
+            this._closeModal();
+        });
+
+        this._confirmationCloseButton.addEventListener("click", () => {
+            this._closeModal();
+        });
+
+        this._confirmation.addEventListener("click", (event) => {
+            if (event.target === this._confirmation) {
+                this._closeModal();
+            }
+        });
+
+        this._imageElement.addEventListener("click", () => {
+            this._handleImageClick({ name: this._name, link: this._link });
+        });
+    }
+
+    generateCard() {
+        this._element = this._getTemplate();
+        this._imageElement = this._element.querySelector(".card__image");
+        this._element.querySelector(".card__title").textContent = this._name;
+
+        this._imageElement.src = this._link;
+        this._imageElement.alt = this._name;
+
+        this._likeButton = this._element.querySelector(".card__like-button");
+        this._deleteButton = this._element.querySelector(".card__delete");
+
+        this._setEventListeners();
+
+        return this._element;
+    }
+}

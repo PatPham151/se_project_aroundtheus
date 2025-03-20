@@ -1,9 +1,22 @@
-export default class Card{
-    constructor(card, cardSelector, handleImageClick) { 
-        this._name = card.name;
-        this._link = card.link; 
-        this._cardSelector = cardSelector;
-        this._handleImageClick = handleImageClick;
+export default class Card {
+    constructor(
+      card,
+      cardSelector,
+      handleImageClick,
+      handleCardLike,
+      handleCardDislike,
+      handleConfirmPopup,
+    
+    ) {
+      this._name = card.name;
+      this._link = card.link;
+      this._cardId = card._id;
+      this._cardSelector = cardSelector;
+      this._handleImageClick = handleImageClick;
+      this._handleCardLike = handleCardLike;
+      this._handleCardDislike = handleCardDislike;
+      this._handleConfirmPopup = handleConfirmPopup;
+
     }
 
     // The constructor needs initialCards array and '#card_template' for cardSelector
@@ -13,20 +26,29 @@ export default class Card{
     }
 
     #likeFunction() { 
-        this._likeButton.classList.toggle('card__like-button--active');
+        if (!this._likeButton.classList.contains('card__like-button--active')) {
+        this._handleCardLike(this._cardId)
+        this._likeButton.classList.add('card__like-button--active');
+        } else {
+        this._handleCardDislike(this._cardId)
+        this._likeButton.classList.remove('card__like-button--active');
+        }
     }
 
-    #deleteFunction() {
+    deleteFunction() {
+        this._handleDeleteClick(this._cardId)
         this._element.remove();
     }
 
+
     _setEventListeners() {
         // Like Button functionality 
-        this._likeButton.addEventListener("click", () => this.#likeFunction());
+        this._likeButton.addEventListener("click", () => this.#likeFunction())
 
         // Delete Button functionality
-        this._deleteButton.addEventListener("click", () => this.#deleteFunction());
-        
+        this._deleteButton.addEventListener("click", () => {
+            this._handleConfirmPopup(this);
+          });
         // Picture modal functionality
         this._imageElement.addEventListener("click", () => {
             this._handleImageClick({ name: this._name, link: this._link });
