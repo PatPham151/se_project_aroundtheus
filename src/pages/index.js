@@ -103,8 +103,8 @@ api.getInitialCards()
   cards.forEach((cardData) => {
     const cardElement = createCard(cardData); // Generate card using createCard
     cardSection.addItem(cardElement); // Properly add to `.gallery__cards`
-    console.log(cardData.isLiked)
     
+    console.log(cardData.isLiked)
     if(cardData.isLiked){
       console.log(cardData._id);  
       fillCardLike();
@@ -128,6 +128,7 @@ avatarValidator.enableValidation();
 // Create Popups
 const imagePopup = new PopupWithImage("#modal__picture");
 imagePopup.setEventListeners();
+
 //  Initialize `UserInfo`
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
@@ -159,13 +160,10 @@ const addCardPopup = new PopupWithForm("#modal__add", (formData) => {
   if (newCardData.name && newCardData.link) {
     api.updateNewCards(newCardData) 
       .then((savedCard) => {
-        const cardElement = new Card(savedCard, "#card__template", (data) => imagePopup.open(data)).generateCard();
+        const cardElement = createCard(newCardData)
         cardSection.addItem(cardElement); 
         document.querySelector("#add__modal_form").reset(); // 
         addCardPopup.close(); 
-      })
-      .then(()=>{
-
       })
       .catch((err) => {
         console.error("Error adding new card:", err);
@@ -195,9 +193,10 @@ const confirmationPopup = new PopupWithConfirm("#confirmation__modal", (cardId) 
   api.deletingCards(cardId)
     .then(() => {
       confirmationPopup.close(); // Close modal after deletion
+      console.log('the PopupWithConfirm is working ')
     })
     .catch((err) => {
-      console.error("Error deleting card:", err);
+      console.error("Error deleting card: confirmationPopup catch ", err);
     });
 });
 
@@ -211,17 +210,25 @@ function handleDislikeButton(cardData){
   api.dislikeCard(cardData._id);
 }
 
+
 function handleConfirmPopup(card) {
   confirmationPopup.setSubmitFunction(() => {
     api.deletingCards(card._id)
-      .then(() => {
-        card.deleteFunction();
-        confirmationPopup.close()
+      .then(() => { 
+        const cardElement = card._element; // Use the stored element
+        if (card._element) {
+          card._element.remove();
+        } else {
+          console.error('No element found to remove');
+        }
+        confirmationPopup.close();
+        
       })
       .catch(console.error);
   });
   confirmationPopup.open();
 }
+
 
 //---------------------CREATING & RENDER CARD--------------------
 // Function to create and render a card
@@ -234,7 +241,6 @@ function createCard(cardData) {
     () => handleLikeButton(cardData),
     () => handleDislikeButton(cardData),
     () => handleConfirmPopup(cardData),
-
     ).generateCard();
 }
 

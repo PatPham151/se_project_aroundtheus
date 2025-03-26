@@ -55,6 +55,16 @@
     margin-top: 34px;
 }
 
+.modal__confirmation_heading {
+    color: black;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29.05px;
+    margin-bottom: 36px;
+    margin-top: 34px;
+}
+
 .modal__form{
     margin:0;
     padding: 0;
@@ -133,6 +143,20 @@
     background-color: white;
     color: rgba(0, 0, 0, 0.5);
     border:rgba(0, 0, 0, 0.5) 1px solid;
+}
+
+.modal__confirmation_submit {
+    height: 50px;
+    width: 358px;
+    background-color: black;
+    color: white;
+    border-radius: 2px;
+    margin-bottom: 36px;
+
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 /* -----------------IMAGE------------------------ */

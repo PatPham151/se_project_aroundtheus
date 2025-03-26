@@ -35,8 +35,8 @@ export default class Card {
         }
     }
 
-    deleteFunction() {
-        this._handleDeleteClick(this._cardId)
+    _deleteFunction() {
+        console.log(this)
         this._element.remove();
     }
 
@@ -47,8 +47,9 @@ export default class Card {
 
         // Delete Button functionality
         this._deleteButton.addEventListener("click", () => {
-            this._handleConfirmPopup(this);
+            this._handleConfirmPopup(this);  // `this` should be the card instance
           });
+          
         // Picture modal functionality
         this._imageElement.addEventListener("click", () => {
             this._handleImageClick({ name: this._name, link: this._link });
