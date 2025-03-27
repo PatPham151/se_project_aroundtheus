@@ -160,9 +160,16 @@ const addCardPopup = new PopupWithForm("#modal__add", (formData) => {
   if (newCardData.name && newCardData.link) {
     api.updateNewCards(newCardData) 
       .then((savedCard) => {
-        const cardElement = createCard(newCardData)
+        // Ensure the savedCard has all necessary properties
+        const fullCardData = {
+          ...savedCard,
+          likes: [], // Initialize empty likes array
+          _id: savedCard._id, // Ensure _id is present
+        };
+
+        const cardElement = createCard(fullCardData)
         cardSection.addItem(cardElement); 
-        document.querySelector("#add__modal_form").reset(); // 
+        document.querySelector("#add__modal_form").reset();
         addCardPopup.close(); 
       })
       .catch((err) => {
@@ -188,43 +195,19 @@ const avatarPopup = new PopupWithForm("#avatar__modal", (formData) => {
 });
 avatarPopup.setEventListeners();
 
-const confirmationPopup = new PopupWithConfirm("#confirmation__modal", (cardId) => {
-
-  api.deletingCards(cardId)
-    .then(() => {
-      confirmationPopup.close(); // Close modal after deletion
-      console.log('the PopupWithConfirm is working ')
-    })
-    .catch((err) => {
-      console.error("Error deleting card: confirmationPopup catch ", err);
-    });
-});
-
+const confirmationPopup = new PopupWithConfirm("#confirmation__modal");
 confirmationPopup.setEventListeners(); 
 
-function handleLikeButton(cardData){
-  api.likeCard(cardData._id);
-}
 
-function handleDislikeButton(cardData){
-  api.dislikeCard(cardData._id);
-}
-
-
-function handleConfirmPopup(card) {
+function handleConfirmPopup(card, cardElement) {
   confirmationPopup.setSubmitFunction(() => {
-    api.deletingCards(card._id)
+    api.deletingCards(card)
       .then(() => { 
-        const cardElement = card._element; // Use the stored element
-        if (card._element) {
-          card._element.remove();
-        } else {
-          console.error('No element found to remove');
-        }
+        cardElement.remove();
         confirmationPopup.close();
-        
       })
-      .catch(console.error);
+      .catch(err => {console.log("error in handleConfirmPopup:", err)
+      });
   });
   confirmationPopup.open();
 }
@@ -236,11 +219,10 @@ function createCard(cardData) {
   return new Card(
     cardData, 
     "#card__template", 
-    (data) => 
-    imagePopup.open(data),
-    () => handleLikeButton(cardData),
-    () => handleDislikeButton(cardData),
-    () => handleConfirmPopup(cardData),
+    (data) => imagePopup.open(data),
+    () => api.likeCard(cardData._id),
+    () => api.dislikeCard(cardData._id),
+    handleConfirmPopup
     ).generateCard();
 }
 

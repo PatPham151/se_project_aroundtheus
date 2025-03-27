@@ -3,6 +3,13 @@ export default class Api {
       this._baseUrl = baseUrl;
       this._headers = headers;
 }
+
+_checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+} 
   
   // fetch the info from the database 
   getUserInfo() {
@@ -24,35 +31,24 @@ export default class Api {
             about: about
           }),
         })
-        .then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
+        .then(this._checkResponse)
+        .catch(err => {console.log('error in updateUserInfo: ', err)})
   }
   
   updateAvatar(avatar) {
-    console.log("Sending Avatar Data:", avatar);
-      
     return fetch(`${this._baseUrl}/users/me/avatar`, { 
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ avatar }), 
-      })
-    .then((res) => {
-        console.log(" Response Status:", res.status);
-        return res.ok ? res.json() : res.text().then((err) => Promise.reject(`Error: ${res.status} - ${err}`));
-        })
-        .then((data) => {
-          console.log("Server Response Data:", data);
-          return data;
-        })
-        .catch((err) => {
-          console.error(" Error Updating Avatar:", err);
-        });
+    })
+    .then(this._checkResponse);
   }
       
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+    .then(this._checkResponse)
     .then((data) => {
       console.log("Fetched Cards:", data); 
       return data; // 
@@ -69,15 +65,12 @@ export default class Api {
     body: JSON.stringify({ name: card.name, link: card.link }),
   })
   .then((res)=>{
+  this._checkResponse
   console.log(" Response Status:", res.status);
   return res.ok ? res.json() : res.text().then((err) => Promise.reject(`Error: ${res.status} - ${err}`));
   })
-  .then((data) => {
-    console.log("Server Response Data:", data);
-    return data;
-  })
   .catch((err) => {
-      console.error(" Error Updating Avatar:", err);
+      console.error(" error in updateNewCards in Api.js:", err);
     });
   }
 
@@ -86,20 +79,11 @@ export default class Api {
       method: "DELETE",
       headers: this._headers
     })
-    .then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    })
+    .then(this._checkResponse)
     .catch((err) => {
       console.error("Error Deleting Card:", err);
       return Promise.reject(err);
     });
-  }
-      
-  _checkResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
   }
 
   checkLike(cardId, currentUserId) {
@@ -127,7 +111,5 @@ export default class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
-       
-
-  }
+}
   

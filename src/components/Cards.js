@@ -5,18 +5,22 @@ export default class Card {
       handleImageClick,
       handleCardLike,
       handleCardDislike,
-      handleConfirmPopup,
-    
+      handleConfirmPopup
     ) {
       this._name = card.name;
       this._link = card.link;
       this._cardId = card._id;
+      
+      // Fallback for likes
+      this._isLiked = card.likes 
+        ? card.likes.some(like => like._id === currentUserId) 
+        : false;
+      
       this._cardSelector = cardSelector;
       this._handleImageClick = handleImageClick;
       this._handleCardLike = handleCardLike;
       this._handleCardDislike = handleCardDislike;
       this._handleConfirmPopup = handleConfirmPopup;
-
     }
 
     // The constructor needs initialCards array and '#card_template' for cardSelector
@@ -26,18 +30,26 @@ export default class Card {
     }
 
     #likeFunction() { 
-        if (!this._likeButton.classList.contains('card__like-button--active')) {
-        this._handleCardLike(this._cardId)
-        this._likeButton.classList.add('card__like-button--active');
+        if (!this._isLiked) {
+            this._handleCardLike(this._cardId)
+                .then((updatedCard) => {
+                    this._likeButton.classList.add('card__like-button--active');
+                    this._isLiked = true;
+                })
+                .catch(err => console.error("Error liking card:", err));
         } else {
-        this._handleCardDislike(this._cardId)
-        this._likeButton.classList.remove('card__like-button--active');
+            this._handleCardDislike(this._cardId)
+                .then((updatedCard) => {
+                    this._likeButton.classList.remove('card__like-button--active');
+                    this._isLiked = false;
+                })
+                .catch(err => console.error("Error disliking card:", err));
         }
     }
 
-    _deleteFunction() {
-        console.log(this)
-        this._element.remove();
+
+    #deleteFunction() {
+        this._handleConfirmPopup(this._cardId, this._element)
     }
 
 
@@ -46,9 +58,7 @@ export default class Card {
         this._likeButton.addEventListener("click", () => this.#likeFunction())
 
         // Delete Button functionality
-        this._deleteButton.addEventListener("click", () => {
-            this._handleConfirmPopup(this);  // `this` should be the card instance
-          });
+        this._deleteButton.addEventListener("click", () =>  this.#deleteFunction())
           
         // Picture modal functionality
         this._imageElement.addEventListener("click", () => {
@@ -67,9 +77,14 @@ export default class Card {
         this._likeButton = this._element.querySelector(".card__like-button");
         this._deleteButton = this._element.querySelector(".card__delete");
     
-        
+        // Set initial like state
+        if (this._isLiked) {
+            this._likeButton.classList.add('card__like-button--active');
+        }
+    
         this._setEventListeners();
     
         return this._element;
     }
 }
+
