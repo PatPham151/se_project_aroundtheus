@@ -16,9 +16,8 @@ _checkResponse(res) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       })
-  .catch((err)=>{console.log('error fetching user info:', err)
-  });
-  }
+      .then(this._checkResponse)
+    }
 
   //patches the database with users input
   updateUserInfo(name, about) {
@@ -32,7 +31,6 @@ _checkResponse(res) {
           }),
         })
         .then(this._checkResponse)
-        .catch(err => {console.log('error in updateUserInfo: ', err)})
   }
   
   updateAvatar(avatar) {
@@ -53,7 +51,6 @@ _checkResponse(res) {
       console.log("Fetched Cards:", data); 
       return data; // 
     })
-    .catch((err) => console.error("Error fetching cards:", err));
   }
       
   updateNewCards(card){
@@ -64,14 +61,7 @@ _checkResponse(res) {
     headers: this._headers,
     body: JSON.stringify({ name: card.name, link: card.link }),
   })
-  .then((res)=>{
-  this._checkResponse
-  console.log(" Response Status:", res.status);
-  return res.ok ? res.json() : res.text().then((err) => Promise.reject(`Error: ${res.status} - ${err}`));
-  })
-  .catch((err) => {
-      console.error(" error in updateNewCards in Api.js:", err);
-    });
+  .then(this._checkResponse)
   }
 
   deletingCards(cardId) {
@@ -80,10 +70,6 @@ _checkResponse(res) {
       headers: this._headers
     })
     .then(this._checkResponse)
-    .catch((err) => {
-      console.error("Error Deleting Card:", err);
-      return Promise.reject(err);
-    });
   }
 
   checkLike(cardId, currentUserId) {

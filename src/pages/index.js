@@ -15,47 +15,25 @@ const profileEditBtn = document.getElementById("profile__edit-button");
 const profileNameInput = document.querySelector("[name='title']");
 const profileDescInput = document.querySelector("[name='about']");
 const addModalOpenBtn = document.querySelector(".profile__add-button");
-
 const pictureNameInput = document.querySelector("[name='name']");
 const pictureUrlInput = document.querySelector("[name='url']")
 const pictureSubmitButton = document.querySelector("#picture_submit");
-
 const avatarEditBtn = document.querySelector(".profile__avatar-button");
-
 const deleteButton = document.querySelectorAll(".card__delete");
 const confirmSubmitBtn = document.querySelector("#confirmation__modal_submit");
 const confirmCloseBtn = document.querySelector("#confirmation__modal_close");
-
 const likeButtons = document.querySelectorAll(".card__like-button");
-
 const profileName = document.querySelector('.profile__title');
 const profileDesc = document.querySelector('.profile__description');
 const profileAvatar = document.querySelector('.profile__avatar');
+const profileSubmitButton = document.querySelector('#profileModal .modal__submit');
+const addCardPopupSubmit = document.querySelector('#modal__add .modal__submit')
+const confirmPopupSubmit = document.querySelector('#confirmation__modal .modal__confirmation_submit')
+const avatarPopupSubmit = document.querySelector('#avatar__modal .modal__submit');
 
+const addModalForm = document.querySelector("#add__modal_form")
 
 //---------------------API GOODS------------------------------------
-
-// Select all submit buttons with the class "modal__submit"
-const submitButtons = document.querySelectorAll('.modal__submit');
-
-// Add an event listener to each button
-submitButtons.forEach((button) => {
-  button.addEventListener('click', function() {
-    
-    const originalText = this.textContent;
-    
-    
-    this.textContent = 'saving';
-    
-    // After 2 seconds, revert the text back to the original. I sure hope this 
-    // is what you meant 
-    setTimeout(() => {
-      this.textContent = originalText;
-    }, 2000);
-  });
-});
-
-
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -65,7 +43,6 @@ const api = new Api({
 });
 
 api.getUserInfo()
-.then((res) => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
   .then((data)=> {
     console.log(data)
     profileName.textContent = data.name
@@ -87,29 +64,19 @@ const cardSection = new Section(
   ".gallery__cards"
 );
 
-function fillCardLike(){
-  const likeBtn = document.querySelector('.card__like-button');
-  likeBtn.classList.toggle('card__like-button--active');
-}
-
-function emptyCardLike(){
-  const likeBtn = document.querySelector('.card__like-button');
-  likeBtn.classList.remove('card__like-button--active');
-}
-
 // Fetch API cards and render them inside the same section
 api.getInitialCards()
 .then((cards) => {
   cards.forEach((cardData) => {
     const cardElement = createCard(cardData); // Generate card using createCard
     cardSection.addItem(cardElement); // Properly add to `.gallery__cards`
-    
+    const likeBtn = document.querySelector('.card__like-button');
     console.log(cardData.isLiked)
     if(cardData.isLiked){
       console.log(cardData._id);  
-      fillCardLike();
+      likeBtn.classList.toggle('card__like-button--active');
     }else{
-      emptyCardLike();
+      likeBtn.classList.remove('card__like-button--active');
     }
   });
 });
@@ -136,22 +103,35 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__avatar"
 });
 
+function submitButtonTextChanger(button){
+  return button.textContent = 'Saving...'
+}
+
 const profilePopup = new PopupWithForm("#profileModal", (formData) => {
-  userInfo.setUserInfo(formData); // Make changes on the page right away
+  const originalText = profileSubmitButton.textContent;
   
   api.updateUserInfo(formData.title, formData.about) // sends to Api.js to save to database
     .then((updatedData) => {
+      submitButtonTextChanger(profileSubmitButton);
+      console.log('Changed profile submit button to saving...')
+      userInfo.setUserInfo(formData);
       profilePopup.close(); 
     })
     .catch((err) => {
       console.error("Error updating profile:", err);
-    });
+    })
+    .finally(()=>{
+      profileSubmitButton.textContent = originalText;
+      console.log('changing prof submit button text back to original')
+    })
 });
 
 profilePopup.setEventListeners();
 
 
 const addCardPopup = new PopupWithForm("#modal__add", (formData) => {
+const originalText = addCardPopupSubmit.textContent;
+
   const newCardData = {
     name: formData.name.trim(),
     link: formData.url.trim(),
@@ -160,6 +140,7 @@ const addCardPopup = new PopupWithForm("#modal__add", (formData) => {
   if (newCardData.name && newCardData.link) {
     api.updateNewCards(newCardData) 
       .then((savedCard) => {
+        submitButtonTextChanger(addCardPopupSubmit);
         // Ensure the savedCard has all necessary properties
         const fullCardData = {
           ...savedCard,
@@ -169,29 +150,41 @@ const addCardPopup = new PopupWithForm("#modal__add", (formData) => {
 
         const cardElement = createCard(fullCardData)
         cardSection.addItem(cardElement); 
-        document.querySelector("#add__modal_form").reset();
+        addModalForm.reset();
         addCardPopup.close(); 
       })
       .catch((err) => {
         console.error("Error adding new card:", err);
-      });
+      })
+      .finally(()=>{
+        addCardPopupSubmit.textContent = originalText;
+        //to test the submitButtonChanger please 
+        //remove the code on line 160 and you'll see the text is changed 
+        console.log('changing add submit button text back to original')
+      })
   }
 });
 addCardPopup.setEventListeners();
 
 const avatarPopup = new PopupWithForm("#avatar__modal", (formData) => {
   console.log("Avatar Form Data:", formData);
+  const originalText = avatarPopupSubmit.textContent;
+  
 
   api.updateAvatar(formData.avatar_url) 
     .then((updatedData) => {
       userInfo.setAvatar(updatedData); // Updates avatar 
-      
+      submitButtonTextChanger(avatarPopupSubmit);
       document.querySelector("#avatar__modal_form").reset(); 
       avatarPopup.close(); 
     })
     .catch((err) => {
       console.error("Error updating avatar:", err);
-    });
+    })
+    .finally(()=>{
+      avatarPopupSubmit.textContent = originalText;
+      console.log('avatar submit button returned to normal')
+    })
 });
 avatarPopup.setEventListeners();
 
@@ -200,14 +193,19 @@ confirmationPopup.setEventListeners();
 
 
 function handleConfirmPopup(card, cardElement) {
+  const confirmPopupOriginal = confirmPopupSubmit.textContent;
   confirmationPopup.setSubmitFunction(() => {
     api.deletingCards(card)
       .then(() => { 
+        submitButtonTextChanger(confirmPopupSubmit);
         cardElement.remove();
         confirmationPopup.close();
       })
       .catch(err => {console.log("error in handleConfirmPopup:", err)
-      });
+      })
+      .finally(()=>{
+        confirmPopupSubmit.textContent = confirmPopupOriginal;
+      })
   });
   confirmationPopup.open();
 }
@@ -251,12 +249,6 @@ avatarEditBtn.addEventListener('click', ()=> {
   avatarPopup.open();
 })
 
-likeButtons.forEach((button) => {
-  button.addEventListener("click", (evt) => {
-    // Here we need to figure out which card was clicked
-    console.log("Like button clicked!");
-  });
-});
 
 
 
