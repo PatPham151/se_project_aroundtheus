@@ -27,12 +27,11 @@ const profileName = document.querySelector('.profile__title');
 const profileDesc = document.querySelector('.profile__description');
 const profileAvatar = document.querySelector('.profile__avatar');
 const profileSubmitButton = document.querySelector('#profileModal .modal__submit');
-const addCardPopupSubmit = document.querySelector('#modal__add .modal__submit')
 const confirmPopupSubmit = document.querySelector('#confirmation__modal .modal__confirmation_submit')
-const avatarPopupSubmit = document.querySelector('#avatar__modal .modal__submit');
-
 const addModalForm = document.querySelector("#add__modal_form")
-
+const avatarModalForm = document.querySelector("#avatar__modal_form")
+const addCardPopupSubmit = document.querySelector('#modal__add .modal__submit')
+const profileEdit = document.querySelector("#edit__modal_form")
 //---------------------API GOODS------------------------------------
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -42,17 +41,18 @@ const api = new Api({
   },
 });
 
-api.getUserInfo()
-  .then((data)=> {
-    console.log(data)
-    profileName.textContent = data.name
-    profileDesc.textContent = data.about
-    profileAvatar.src = data.avatar; 
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo({
+      title: data.name,
+      about: data.about,
+    });
+    userInfo.setAvatar(data);
   })
-.catch((err) => console.error(err));
+  .catch((err) => console.error(err));
 
 
-        
 const cardSection = new Section(
   {
     items: [],
@@ -71,22 +71,16 @@ api.getInitialCards()
     const cardElement = createCard(cardData); // Generate card using createCard
     cardSection.addItem(cardElement); // Properly add to `.gallery__cards`
     const likeBtn = document.querySelector('.card__like-button');
-    console.log(cardData.isLiked)
-    if(cardData.isLiked){
-      console.log(cardData._id);  
-      likeBtn.classList.toggle('card__like-button--active');
-    }else{
-      likeBtn.classList.remove('card__like-button--active');
-    }
-  });
+  })
+  .catch(err=>{console.log('somethings wrong with getInitialCards', err)})
 });
 
 //---------------------FORMS AND VALIDATION AND SUBMIT BUTTONS RESPONSES--------------------------
 
 // Initialize form validation
-const addCardValidator = new FormValidator(config, document.querySelector("#add__modal_form"));
-const profileValidator = new FormValidator(config, document.querySelector("#edit__modal_form"));
-const avatarValidator = new FormValidator(config, document.querySelector("#avatar__modal_form"));
+const addCardValidator = new FormValidator(config, addModalForm);
+const profileValidator = new FormValidator(config, profileEdit);
+const avatarValidator = new FormValidator(config, avatarModalForm);
 addCardValidator.enableValidation();
 profileValidator.enableValidation();
 avatarValidator.enableValidation();
@@ -103,17 +97,17 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__avatar"
 });
 
-function submitButtonTextChanger(button){
-  return button.textContent = 'Saving...'
+// Makes changing submit button easier and more dynamic 
+function submitButtonTextChanger(button, newTextContent){
+  return button.textContent = newTextContent
 }
 
 const profilePopup = new PopupWithForm("#profileModal", (formData) => {
   const originalText = profileSubmitButton.textContent;
-  
+  submitButtonTextChanger(profileSubmitButton, 'Saving...');
+
   api.updateUserInfo(formData.title, formData.about) // sends to Api.js to save to database
     .then((updatedData) => {
-      submitButtonTextChanger(profileSubmitButton);
-      console.log('Changed profile submit button to saving...')
       userInfo.setUserInfo(formData);
       profilePopup.close(); 
     })
@@ -130,7 +124,8 @@ profilePopup.setEventListeners();
 
 
 const addCardPopup = new PopupWithForm("#modal__add", (formData) => {
-const originalText = addCardPopupSubmit.textContent;
+  const originalText = addCardPopupSubmit.textContent;
+  submitButtonTextChanger(addCardPopupSubmit, 'Saving...')
 
   const newCardData = {
     name: formData.name.trim(),
@@ -140,7 +135,8 @@ const originalText = addCardPopupSubmit.textContent;
   if (newCardData.name && newCardData.link) {
     api.updateNewCards(newCardData) 
       .then((savedCard) => {
-        submitButtonTextChanger(addCardPopupSubmit);
+        
+        console.log('changing add card submit text to Saving')
         // Ensure the savedCard has all necessary properties
         const fullCardData = {
           ...savedCard,
@@ -158,24 +154,23 @@ const originalText = addCardPopupSubmit.textContent;
       })
       .finally(()=>{
         addCardPopupSubmit.textContent = originalText;
-        //to test the submitButtonChanger please 
-        //remove the code on line 160 and you'll see the text is changed 
         console.log('changing add submit button text back to original')
       })
+  }else{
+    console.log('something is wrong with addCardPopup, the if is returning falsey')
   }
 });
 addCardPopup.setEventListeners();
 
 const avatarPopup = new PopupWithForm("#avatar__modal", (formData) => {
-  console.log("Avatar Form Data:", formData);
+  const avatarPopupSubmit = document.querySelector('#avatar__modal .modal__submit');
   const originalText = avatarPopupSubmit.textContent;
-  
+  submitButtonTextChanger(avatarPopupSubmit, 'Saving...');
 
   api.updateAvatar(formData.avatar_url) 
     .then((updatedData) => {
       userInfo.setAvatar(updatedData); // Updates avatar 
-      submitButtonTextChanger(avatarPopupSubmit);
-      document.querySelector("#avatar__modal_form").reset(); 
+      avatarModalForm.reset(); 
       avatarPopup.close(); 
     })
     .catch((err) => {
@@ -183,7 +178,6 @@ const avatarPopup = new PopupWithForm("#avatar__modal", (formData) => {
     })
     .finally(()=>{
       avatarPopupSubmit.textContent = originalText;
-      console.log('avatar submit button returned to normal')
     })
 });
 avatarPopup.setEventListeners();
@@ -195,9 +189,9 @@ confirmationPopup.setEventListeners();
 function handleConfirmPopup(card, cardElement) {
   const confirmPopupOriginal = confirmPopupSubmit.textContent;
   confirmationPopup.setSubmitFunction(() => {
+    submitButtonTextChanger(confirmPopupSubmit, 'Deleting...');
     api.deletingCards(card)
       .then(() => { 
-        submitButtonTextChanger(confirmPopupSubmit);
         cardElement.remove();
         confirmationPopup.close();
       })
@@ -218,10 +212,12 @@ function createCard(cardData) {
     cardData, 
     "#card__template", 
     (data) => imagePopup.open(data),
-    () => api.likeCard(cardData._id),
-    () => api.dislikeCard(cardData._id),
+    () => api.likeCard(cardData._id)
+      .catch(err => console.error("Error liking card:", err)), // Added this line
+    () => api.dislikeCard(cardData._id)
+      .catch(err => console.error("Error disliking card:", err)), // Added this line
     handleConfirmPopup
-    ).generateCard();
+  ).generateCard();
 }
 
 //-------------------------Open modal buttons and submit buttons event listenrs---------------------
@@ -246,6 +242,8 @@ addModalOpenBtn.addEventListener("click", () => {
 });
 
 avatarEditBtn.addEventListener('click', ()=> {
+
+  avatarValidator.resetValidation();
   avatarPopup.open();
 })
 

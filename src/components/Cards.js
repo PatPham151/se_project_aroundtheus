@@ -12,9 +12,7 @@ export default class Card {
       this._cardId = card._id;
       
       // Fallback for likes
-      this._isLiked = card.likes 
-        ? card.likes.some(like => like._id === currentUserId) 
-        : false;
+      this._isLiked = this._isLiked = card.isLiked || false;
       
       this._cardSelector = cardSelector;
       this._handleImageClick = handleImageClick;
@@ -75,11 +73,14 @@ export default class Card {
         this._imageElement.alt = this._name;
     
         this._likeButton = this._element.querySelector(".card__like-button");
+        
         this._deleteButton = this._element.querySelector(".card__delete");
     
         // Set initial like state
         if (this._isLiked) {
             this._likeButton.classList.add('card__like-button--active');
+        }else{
+            this._likeButton.classList.remove('card__like-button--active')
         }
     
         this._setEventListeners();
