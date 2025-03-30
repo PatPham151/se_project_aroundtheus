@@ -66,14 +66,16 @@ const cardSection = new Section(
 
 // Fetch API cards and render them inside the same section
 api.getInitialCards()
-.then((cards) => {
-  cards.forEach((cardData) => {
-    const cardElement = createCard(cardData); // Generate card using createCard
-    cardSection.addItem(cardElement); // Properly add to `.gallery__cards`
-    const likeBtn = document.querySelector('.card__like-button');
+  .then((cards) => {
+    cards.forEach((cardData) => {
+      const cardElement = createCard(cardData); // Generate card using createCard
+      cardSection.addItem(cardElement); // Properly add to `.gallery__cards`
+      const likeBtn = document.querySelector('.card__like-button');
+    });
   })
-  .catch(err=>{console.log('somethings wrong with getInitialCards', err)})
-});
+  .catch((err) => {
+    console.log('somethings wrong with getInitialCards', err);
+  });
 
 //---------------------FORMS AND VALIDATION AND SUBMIT BUTTONS RESPONSES--------------------------
 
