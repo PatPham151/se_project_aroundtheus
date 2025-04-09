@@ -17,3 +17,4 @@ export const initialCards = [
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__input-error-active",
   };
+
